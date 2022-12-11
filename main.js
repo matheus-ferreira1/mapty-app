@@ -30,7 +30,22 @@ const inputElevation = document.querySelector(".form__input--elevation");
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
     (position) => {
-      console.log(position);
+      const { latitude, longitude } = position.coords;
+      console.log(`https://www.google.com.br/maps/@${latitude},${longitude}`);
+
+      const coords = [latitude, longitude];
+
+      const map = L.map("map").setView(coords, 13);
+
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      L.marker(coords)
+        .addTo(map)
+        .bindPopup("A pretty CSS3 popup.<br> Easily customizable.")
+        .openPopup();
     },
     () => alert("Could not get your position")
   );
