@@ -1,7 +1,10 @@
 export const htmlInjection = () => {
-  document.querySelector("#app").innerHTML = `
+  document.querySelector("#application").innerHTML = `
 <div class="sidebar">
-<img src="logo.png" alt="Logo" class="logo" />
+<div class="sidebar__title">
+  <img src="logo.png" alt="Logo" class="logo" />
+  <button class="reset__button">Reset</button>
+</div>
 
 <ul class="workouts">
   <form class="form hidden">
